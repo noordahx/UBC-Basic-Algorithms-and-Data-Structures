@@ -52,7 +52,7 @@ T Stack<T>::peek()
     /**
      * @todo Your code here! 
      */
-    return myStack.peekR;
+    return myStack.peekR();
 }
 
 /**

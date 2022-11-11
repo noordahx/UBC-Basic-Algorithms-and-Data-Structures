@@ -6,7 +6,7 @@
 
 template <class T>
 Deque<T>::Deque(){
-/* YOUR CODE HERE! */
+/* YOUR CODE HERE! */;
     n1 = 0;
     n2 = data.size();
 }
@@ -22,7 +22,8 @@ void Deque<T>::pushR(T newItem)
     /**
      * @todo Your code here!
      */
-    data.push_back(newItem);
+    data.at(n2) = newItem;
+    // data.push_back(newItem);
     n2++;
 }
 
@@ -41,6 +42,7 @@ T Deque<T>::popL()
      * @todo Your code here! 
      */
     // add non-empty
+    T value = peekL();
     n1++;
     if ((n2 - n1 - 1) <= n1) {
         vector<T> new_data;
@@ -51,6 +53,7 @@ T Deque<T>::popL()
         n1 = 0;
         data = new_data;
     }
+    return value;
 }
 /**
  * Removes the object at the right of the Deque, and returns it to the
@@ -64,7 +67,7 @@ T Deque<T>::popR()
     /**
      * @todo Your code here! You will need to replace the following line.
      */
-    // add non-empty
+    T value = peekR();
     n2--;
     if ((n2 - n1 - 1) <= n1) {
         vector<T> new_data;
@@ -75,7 +78,7 @@ T Deque<T>::popR()
         n1 = 0;
         data = new_data;
     }
-
+    return value;
 }
 
 /**
@@ -107,7 +110,7 @@ T Deque<T>::peekR()
      * @todo Your code here! 
      */
     // add non-empty
-    return data.at(n2);
+    return data.at(n2 - 1);
 }
 
 /**
@@ -121,6 +124,6 @@ bool Deque<T>::isEmpty() const
     /**
      * @todo Your code here! 
      */
-    if (n2 - n1 == 1) return true;
+    if (n2 - n1 <= 1) return true;
     else return false;
 }
