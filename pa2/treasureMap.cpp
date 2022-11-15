@@ -107,9 +107,7 @@ PNG treasureMap::renderMaze()
     isVisited[start.first][start.second] = true;
     
     myQueue.enqueue(start);
-    // for (auto neighbor : neighbors(start)) {
-    //     myQueue.enqueue(neighbor);
-    // }
+
     
     pair<int,int> curr;
     while (!myQueue.isEmpty())
