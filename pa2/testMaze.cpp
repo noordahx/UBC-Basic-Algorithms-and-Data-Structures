@@ -40,13 +40,13 @@ TEST_CASE("treasureMap::basic no cycles", "[weight=1][part=treasureMap]")
     treasureMap M(base, maze, start);
 
     PNG treasure = M.renderMap();
-	//treasure.writeToFile("images/embeddedsnake.png");
+	treasure.writeToFile("images/embeddedsnake_test.png");
     PNG treasureans;
     treasureans.readFromFile("images/embeddedsnake.png");
     REQUIRE( treasure == treasureans );
 
     PNG treasuremaze = M.renderMaze();
-	//treasuremaze.writeToFile("images/greyedsnake.png");
+	treasuremaze.writeToFile("images/greyedsnake_test.png");
     PNG treasuremazeans;
 	treasuremazeans.readFromFile("images/greyedsnake.png");
     REQUIRE( treasuremaze == treasuremazeans );
