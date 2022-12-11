@@ -11,7 +11,8 @@
  */
 Chain::~Chain()
 {
-/* YOUR CODE HERE */
+    /* YOUR CODE HERE */
+    clear();
 }
 
 /**
@@ -22,7 +23,18 @@ Chain::~Chain()
  */
 void Chain::insertBack(const Block &ndata)
 {
-/* YOUR CODE HERE */
+    /* YOUR CODE HERE */
+    
+    Node* curr = head_;
+    while(curr->next != head_) {
+        curr = curr->next;
+    }
+
+    Node* ins = new Node(ndata);
+    curr->next = ins;
+    ins->next = head_;
+    length_++;
+
 }
 
 
@@ -35,6 +47,17 @@ void Chain::insertBack(const Block &ndata)
 void Chain::swap(int i, int j)
 {
 /* YOUR CODE HERE */
+    Node* pre_i = walk(head_,i-1);
+    Node* pre_j = walk(head_,j-1);
+    Node* temp;
+    temp = pre_i->next;
+    pre_i->next = pre_j->next;
+    pre_j->next =temp;
+    pre_i = pre_i->next;
+    pre_j = pre_j->next;
+    temp = pre_i->next;
+    pre_i->next = pre_j->next;
+    pre_j->next =temp;
 }
 
 /**
@@ -43,6 +66,18 @@ void Chain::swap(int i, int j)
 void Chain::reverse()
 {
 /* YOUR CODE HERE */
+    Node* prev = head_;
+    Node* curr = head_->next;
+    Node* next = head_->next->next;
+    
+    while (curr != head_) {
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+        next = curr->next;
+    }
+    
+    head_->next = prev;
 }
 
 /*
@@ -55,10 +90,25 @@ void Chain::reverse()
 *   k = 2: b a d c e
 *   k = 3: b c a d e
 *   k = 4: b c d a e
+           b a c d e
+           b c a d e
+           b c d a e
+
 */
 void Chain::rotate(int k)
 {
 /* YOUR CODE HERE */
+    int idx = 1;
+    for (int i = 1; i <= length_; i++) {
+        if (idx < k) {
+            swap(i, i+1);
+            idx++;
+        } else  {
+            idx = 1;
+            if (length_ - i < k) 
+                {break;}
+        }
+    }
 }
 
 /**
@@ -67,7 +117,20 @@ void Chain::rotate(int k)
  */
 void Chain::clear()
 {
-/* YOUR CODE HERE */
+    /* YOUR CODE HERE */
+    Node* curr = head_;
+    while (curr->next != head_) {
+        Node* temp = curr;
+        curr = curr->next;
+        delete temp;
+    }
+    delete curr;
+    head_ = NULL;
+    length_ = 0;
+    height_ = 0;
+    width_ = 0;
+
+
 }
 
 /* makes the current object into a copy of the parameter:
@@ -79,4 +142,16 @@ void Chain::clear()
 void Chain::copy(Chain const &other)
 {
 /* YOUR CODE HERE */
+    length_ = other.length_;
+    width_ = other.width_;
+    height_ = other.height_;
+    head_ = new Node();
+    head_->next = head_;
+    Node * curr = other.head_->next;
+    while (curr != other.head_) {
+        insertBack(curr->data);
+        curr = curr->next;
+    }
+
+
 }
