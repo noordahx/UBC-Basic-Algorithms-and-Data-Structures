@@ -1,0 +1,6 @@
+# AVL Trees (Adelson-Velskii Landis)
+![](media/avl1.png)  
+![](media/avl2.png)  
+![](media/avl3.png)  
+![](media/avl4.png)  
+![](media/avl5.png)  
