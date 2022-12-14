@@ -6,20 +6,20 @@
 int Block::width() const
 {
 /* YOUR CODE HERE */
-    return data[0].size();
+    return data.size();
 }
 int Block::height() const
 {
 /* YOUR CODE HERE */
-    return data.size();
+    return data[0].size();
 }
 
 void Block::render(PNG &im, int column, int row) const
 {
 /* YOUR CODE HERE */
-    for (int x = column; x < column+width(); x++) {
-        for (int y = row; y < row+height(); y++) {
-            *im.getPixel(x,y) = data[x][y];
+    for (int x = 0; x < width(); x++) {
+        for (int y = 0; y < height(); y++) {
+            *im.getPixel(column+x,row+y) = data[x][y];
         }
     }
 
@@ -28,13 +28,14 @@ void Block::render(PNG &im, int column, int row) const
 void Block::build(PNG &im, int column, int row, int width, int height)
 {
 /* YOUR CODE HERE */
-    for (int x = column; x < column+width; x++) {
-        for (int y = row; y < row+height; y++) {
-            data[x][y] = *im.getPixel(x,y);
+    data.resize(width, vector<RGBAPixel>(height));
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            data[x][y] = *im.getPixel(column+x,row+y);
         }
     }
     
-}
+} 
 
 void Block::flipVert()
 {
@@ -62,12 +63,14 @@ void Block::flipHoriz()
 
 void Block::rotateRight()
 {
-/* YOUR CODE HERE */
-    for (int x = 0; x < width(); x++) {
-        for (int y = 0; y < height(); y++) {
+    /* YOUR CODE HERE */
+    for (int x = 0; x < width()/2; x++) {
+        for (int y = x; y < height()-x-1; y++) {
             RGBAPixel temp = data[x][y];
-            data[x][y] = data[width()-1-x][height()-1-y];
-            data[width()-1-x][height()-1-y] = temp;
+            data[x][y] = data[y][width()-1-x];
+            data[y][width()-1-x] = data[width()-1-x][width()-1-y];
+            data[width()-1-x][width()-1-y] = data[width()-1-y][x];
+            data[width()-1-y][x] = temp;
         }
     }
 }
