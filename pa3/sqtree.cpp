@@ -44,6 +44,16 @@ SQtree & SQtree::operator=(const SQtree & rhs) {
  */
 SQtree::SQtree(PNG & imIn, double tol) {
   // Your code here.
+  stats s = stats(imIn);
+  root = &Node(s, make_pair(0,0), imIn.width(), imIn.height());
+  // for (unsigned int i = 0; i < imIn.width(); i++) {
+  //   for (unsigned int j = 0; j < imIn.height(); j++) {
+  //     pair<int,int> ul = make_pair(i,j);
+  //     int w = imIn.width() - i;
+  //     int h = imIn.height() - j;
+  //     buildTree(s, ul, w, h, tol);
+  //   }
+  // }Node 
 }
 
 /**
@@ -52,6 +62,7 @@ SQtree::SQtree(PNG & imIn, double tol) {
 SQtree::Node * SQtree::buildTree(stats & s, pair<int,int> & ul,
 				 int w, int h, double tol) {
   // Your code here.
+  // for (unsigned int i = 0)
 }
   
 /**

@@ -24,11 +24,11 @@ $(EXESqtree) : $(OBJS_Q)
 pa3.o : pa3.cpp sqtree.h cs221util/PNG.h cs221util/RGBAPixel.h stats.h
 	$(CXX) $(CXXFLAGS) pa3.cpp -o $@
 
-teststats.o : teststats.cpp cs221util/PNG.h cs221util/RGBAPixel.h stats.h
-	$(CXX) $(CXXFLAGS) teststats.cpp -o $@
+teststats.o : testStats.cpp cs221util/PNG.h cs221util/RGBAPixel.h stats.h
+	$(CXX) $(CXXFLAGS) testStats.cpp -o $@
 
-testsqtree.o : testsqtree.cpp sqtree.h cs221util/PNG.h cs221util/RGBAPixel.h stats.h
-	$(CXX) $(CXXFLAGS) testsqtree.cpp -o $@
+testsqtree.o : testSQtree.cpp sqtree.h cs221util/PNG.h cs221util/RGBAPixel.h stats.h
+	$(CXX) $(CXXFLAGS) testSQtree.cpp -o $@
 
 #sqtree.o : sqtree.cpp sqtree.h stats.h
 sqtree.o : sqtree.cpp sqtree.h stats.h cs221util/PNG.h cs221util/RGBAPixel.h
